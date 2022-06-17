@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var gameViewModel=GameViewModel()
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        ZStack{
+        GameView(gameViewModel: gameViewModel)
+            GameUIView(gameViewModel: gameViewModel)
+        }
+        //AdView()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().previewInterfaceOrientation(.landscapeLeft)
     }
 }
