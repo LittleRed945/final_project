@@ -14,4 +14,5 @@ struct tile:Identifiable{
 struct object_tile:Identifiable{
     var id = UUID()
     var object=game_object.none
+    var index=0
 }

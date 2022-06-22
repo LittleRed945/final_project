@@ -8,14 +8,17 @@ class GameViewModel: ObservableObject {
     private let db = Firestore.firestore()
     @Published var invite_code=""
     @Published var currentGameData=GameData(players_id:[String]() )
+    
     //    @Published var userDatas=Array(repeating: UserData(id: "", userNickName: "", userGender: "", userBD: "", userFirstLogin: ""), count: 4)
     //    @Published var currentGameData=GameData(player1_id: "", player2_id: "", player3_id: "", player4_id: "")
     @Published var userDatas=[UserData]()
     @Published var board=[tile]()
     @Published var players=[player]()
-    //@Published var object_board=[object_tile]()
-    @Published var turn=0
-    @Published var my_turn=0
+    @Published var object_board=[object_tile]()
+    @Published var now_order=0
+    @Published var now_index=0
+    @Published var my_order=0
+    @Published var my_index=0
     @Published var tile_size=CGSize.zero
     
     var can_attack=false
@@ -78,9 +81,41 @@ class GameViewModel: ObservableObject {
         let count=currentGameData.players_id.endIndex
         self.currentGameData.players_hp=Array(repeating: 0, count: count)
         self.currentGameData.players_sp=Array(repeating: 0, count: count)
-        self.currentGameData.players_job=Array(repeating: "", count: count)
+        self.currentGameData.players_atk=Array(repeating: 0, count: count)
+        self.currentGameData.players_role=Array(repeating: "", count: count)
         self.currentGameData.players_x=Array(repeating: 0, count: count)
         self.currentGameData.players_y=Array(repeating: 0, count: count)
+        for i in 0..<count{
+            self.currentGameData.players_order.append(i)
+        }
+        self.currentGameData.players_order.shuffle()
+        self.UpdateGame()
+        for i in 0..<count{
+            if Auth.auth().currentUser!.uid == self.currentGameData.players_id[i]{
+                self.my_order=self.currentGameData.players_order[i]
+                self.my_index=i
+            }
+        }
+        self.tile_size=CGSize(width:32,height: 32)
+    }
+    func setRole(role:String){
+        
+        if role=="探險家"{
+            self.currentGameData.players_hp[my_index]=30
+            self.currentGameData.players_sp[my_index]=10
+            self.currentGameData.players_atk[my_index]=3
+            self.currentGameData.players_role[my_index]=role
+        }else if role=="戰士"{
+            self.currentGameData.players_hp[my_index]=50
+            self.currentGameData.players_sp[my_index]=5
+            self.currentGameData.players_atk[my_index]=5
+            self.currentGameData.players_role[my_index]=role
+        }else{
+            self.currentGameData.players_hp[my_index]=40
+            self.currentGameData.players_sp[my_index]=8
+            self.currentGameData.players_atk[my_index]=4
+            self.currentGameData.players_role[my_index]=role
+        }
         self.UpdateGame()
     }
     func checkGameChange() {
@@ -143,6 +178,19 @@ class GameViewModel: ObservableObject {
             
         }
     }
+    func generateMap(){
+        for _ in Range(0...16*16-1){
+            object_board.append(object_tile())
+        }
+        let pos_x_array=[0,15,0,15].shuffled()
+        let pos_y_array=[0,15,0,15].shuffled()
+        for i in self.currentGameData.players_id.indices{
+            self.currentGameData.players_x[i]=pos_x_array[i]
+            self.currentGameData.players_y[i]=pos_y_array[i]
+            self.object_board[self.currentGameData.players_x[i]+self.currentGameData.players_y[i]*16]=object_tile(object:.player,index:i)
+        }
+        self.UpdateGame()
+    }
     func leaveLobby(){
         
             for i in self.currentGameData.players_id.indices{
@@ -171,7 +219,7 @@ class GameViewModel: ObservableObject {
         
         for _ in Range(0...16*16-1){
             board.append(tile())
-            //            object_board.append(object_tile())
+                        object_board.append(object_tile())
         }
         //        object_board[0].object = .player
         //        object_board[15].object = .player
@@ -187,7 +235,7 @@ class GameViewModel: ObservableObject {
         tile_size.height=32
     }
     func attack(){
-        self.players[self.turn].action+=4
+        self.currentGameData.play.action+=4
         for i in 0..<self.attack_image-1{
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(i)*0.1) {
                 self.players[self.turn].animation_id+=1
@@ -264,10 +312,14 @@ class GameViewModel: ObservableObject {
         print("HI")
     }
     func rest(){
-        self.turn+=1
-        if self.turn >= self.players.endIndex{
-            self.turn=0
+        self.currentGameData.turn+=1
+        for i in self.currentGameData.players_id.indices{
+            if self.currentGameData.turn%self.currentGameData.players_id.endIndex==self.currentGameData.players_order[i]{
+                self.now_index=i
+                self.now_order=self.currentGameData.players_order[i]
+            }
         }
+        
         
     }
     

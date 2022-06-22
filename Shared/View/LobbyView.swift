@@ -27,10 +27,7 @@ struct LobbyView:View{
     
     var body:some View{
         Text("").frame(width: 0, height: 0).fullScreenCover(isPresented: $gameViewModel.currentGameData.is_started, content: {
-            ZStack{
-                GameView(gameViewModel: gameViewModel)
-                GameUIView(gameViewModel: gameViewModel)
-            }
+            GameView(gameViewModel: gameViewModel)
         })
         NavigationView{
             VStack{

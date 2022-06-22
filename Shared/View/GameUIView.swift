@@ -20,6 +20,9 @@ struct PlayerStatusView:View{
         VStack(spacing:0){
             if show_ui{
                 ZStack{
+                    Text("").onChange(of: gameViewModel.currentGameData.turn, perform: {
+                        
+                    })
                     Rectangle().fill(uiColor1).frame(width: UIScreen.main.bounds.width-40, height: 50)
                     Rectangle().fill(uiColor2).frame(width: UIScreen.main.bounds.width-60, height: 30)
                     HStack{
