@@ -8,7 +8,7 @@ class GameViewModel: ObservableObject {
     private let db = Firestore.firestore()
     @Published var invite_code=""
     @Published var currentGameData=GameData(players_id:[String]() )
-    
+    @Published var characters=[Character]()
     //    @Published var userDatas=Array(repeating: UserData(id: "", userNickName: "", userGender: "", userBD: "", userFirstLogin: ""), count: 4)
     //    @Published var currentGameData=GameData(player1_id: "", player2_id: "", player3_id: "", player4_id: "")
     @Published var userDatas=[UserData]()
@@ -63,6 +63,8 @@ class GameViewModel: ObservableObject {
                             
                             self.currentGameData=g
                             self.currentGameData.players_id.append(Auth.auth().currentUser!.uid)
+                        self.UpdateGame()
+                        print(self.currentGameData.players_id)
                             self.UpdateGame()
                             completion(.success("成功"))
                             break
@@ -87,6 +89,7 @@ class GameViewModel: ObservableObject {
         self.currentGameData.players_y=Array(repeating: 0, count: count)
         for i in 0..<count{
             self.currentGameData.players_order.append(i)
+            self.characters.append(Character(char: self.userDatas[i].char, hair: self.userDatas[i].hair, shirt: self.userDatas[i].shirt, pants: self.userDatas[i].pants, shoes: self.userDatas[i].shoes))
         }
         self.currentGameData.players_order.shuffle()
         self.UpdateGame()
@@ -122,16 +125,17 @@ class GameViewModel: ObservableObject {
         db.collection("games").document(self.invite_code).addSnapshotListener { snapshot, error in
             guard let snapshot = snapshot else { return }
             guard let game = try? snapshot.data(as: GameData.self) else { return }
-            
+            print(game.players_id)
             self.currentGameData=game
-            
+            self.CatchUserData()
             if self.currentGameData.players_id==[]{
                 self.leaveLobby()
             }
-            print(game)
+           
         }
     }
     func CatchUserData(){
+        var is_exist=false
         print("I m IN")
         let userViewModel=UserViewModel()
         userViewModel.fetchUsers(){
@@ -141,15 +145,35 @@ class GameViewModel: ObservableObject {
             case .success(let udArray):
                 print("使用者資料抓取成功")
                 for u in udArray {
+                    is_exist=false
+                    for self_u in self.userDatas{
+                        if u.id == self_u.id{
+                            is_exist=true
+                            break
+                        }
+                    }
+                    if !is_exist{
                     for p_id in self.currentGameData.players_id{
+                        
                         if u.id == p_id{
                             self.userDatas.append(u)
                         }
                         
                     
-                    }                }
-                
-                
+                    }
+                    }
+                    
+                }
+//                if self.userDatas.endIndex>=2{
+//                for i in (0...self.userDatas.endIndex-2){
+//                    for j in (i+1...self.userDatas.endIndex-1){
+//                        if i<self.userDatas.endIndex-1,self.userDatas[i].id==self.userDatas[j].id{
+//                            self.userDatas.remove(at: j)
+//                        }
+//                    }
+//                }
+//                }
+                print(self.userDatas)
             case .failure(_):
                 print("使用者資料抓取失敗")
                 //showView = true
@@ -169,6 +193,8 @@ class GameViewModel: ObservableObject {
             else {
                 return
             }
+            print("UPdateing")
+            print(self.currentGameData)
             game=self.currentGameData
             do {
                 try documentReference.setData(from: game)
@@ -235,31 +261,31 @@ class GameViewModel: ObservableObject {
         tile_size.height=32
     }
     func attack(){
-        self.currentGameData.play.action+=4
+        self.characters[self.now_index].action+=4
         for i in 0..<self.attack_image-1{
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(i)*0.1) {
-                self.players[self.turn].animation_id+=1
+                self.characters[self.now_index].animation_id+=1
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + Double(self.attack_image-1)*0.1) {
-            self.players[self.turn].action-=4
-            self.players[self.turn].animation_id=0
+            self.characters[self.now_index].action-=4
+            self.characters[self.now_index].animation_id=0
         }
     }
     func player_is_front()->Bool{
         
-        for i in 0..<players.endIndex{
-            if i != self.turn{
-                if self.players[self.turn].action==1,self.players[i].board_pos==self.players[self.turn].board_pos-16{
+        for i in 0..<self.currentGameData.players_order.endIndex{
+            if i != self.now_index{
+                if self.characters[self.now_index].action==1,self.currentGameData.players_x[now_index]==self.currentGameData.players_x[i],self.currentGameData.players_y[now_index]==self.currentGameData.players_y[i]-16{
                     return true
                 }
-                else if self.players[self.turn].action==0,self.players[i].board_pos==self.players[self.turn].board_pos+16{
+                else if self.characters[self.now_index].action==0,self.currentGameData.players_x[now_index]==self.currentGameData.players_x[i],self.currentGameData.players_y[now_index]==self.currentGameData.players_y[i]+16{
                     return true
                 }
-                else if self.players[self.turn].action==3,self.players[i].board_pos==self.players[self.turn].board_pos-1{
+                else if self.characters[self.now_index].action==3,self.currentGameData.players_x[now_index]==self.currentGameData.players_x[i]-1,self.currentGameData.players_y[now_index]==self.currentGameData.players_y[i]{
                     return true
                 }
-                else if self.players[self.turn].action==2,self.players[i].board_pos==self.players[self.turn].board_pos+1{
+                else if self.characters[self.now_index].action==2,self.currentGameData.players_x[now_index]==self.currentGameData.players_x[i]+1,self.currentGameData.players_y[now_index]==self.currentGameData.players_y[i]{
                     return true
                 }
             }
@@ -267,44 +293,52 @@ class GameViewModel: ObservableObject {
         return false
     }
     func move(){
-        if self.players[self.turn].is_moveing{
-            if self.players[self.turn].action==1{
-                self.move_up()
-            }
-            else if self.players[self.turn].action==0{
-                self.move_down()
-            }
-            else if self.players[self.turn].action==3{
-                self.move_left()
-            }
-            else if self.players[self.turn].action==2{
-                self.move_right()
-            }
-            self.players[self.turn].is_moveing=false
-        }
+        print("HI")
+//        if self.players[self.turn].is_moveing{
+//            if self.players[self.turn].action==1{
+//                self.move_up()
+//            }
+//            else if self.players[self.turn].action==0{
+//                self.move_down()
+//            }
+//            else if self.players[self.turn].action==3{
+//                self.move_left()
+//            }
+//            else if self.players[self.turn].action==2{
+//                self.move_right()
+//            }
+//            self.players[self.turn].is_moveing=false
+//        }
+//        for i in object_board.indices{
+//            if
+//        }
     }
     func move_up(){
-        self.players[self.turn].action=1
-        if self.players[self.turn].board_pos/16>0,!self.player_is_front(){
-            self.players[self.turn].board_pos-=16
+        self.characters[self.now_index].action=1
+        if self.currentGameData.players_y[now_index]>0,!self.player_is_front(){
+            self.currentGameData.players_y[now_index]-=1
+            self.object_board.swapAt(self.currentGameData.players_y[now_index]*16+currentGameData.players_x[now_index], self.currentGameData.players_y[now_index]*16+currentGameData.players_x[now_index]-16)
         }
     }
     func move_down(){
-        self.players[self.turn].action=0
-        if self.players[self.turn].board_pos/16<16-1,!self.player_is_front(){
-            self.players[self.turn].board_pos+=16
+        self.characters[self.now_index].action=0
+        if self.currentGameData.players_y[now_index]<16-1,!self.player_is_front(){
+            self.currentGameData.players_y[now_index]+=1
+            self.object_board.swapAt(self.currentGameData.players_y[now_index]*16+currentGameData.players_x[now_index], self.currentGameData.players_y[now_index]*16+currentGameData.players_x[now_index]+16)
         }
     }
     func move_left(){
-        self.players[self.turn].action=3
-        if self.players[self.turn].board_pos%16>0,!self.player_is_front(){
-            self.players[self.turn].board_pos-=1
+        self.characters[self.now_index].action=3
+        if self.currentGameData.players_x[now_index]>0,!self.player_is_front(){
+            self.currentGameData.players_x[now_index]-=1
+            self.object_board.swapAt(self.currentGameData.players_y[now_index]*16+currentGameData.players_x[now_index], self.currentGameData.players_y[now_index]*16+currentGameData.players_x[now_index]-1)
         }
     }
     func move_right(){
-        self.players[self.turn].action=2
-        if self.players[self.turn].board_pos%16<16-1,!self.player_is_front(){
-            self.players[self.turn].board_pos+=1
+        self.characters[self.now_index].action=2
+        if self.currentGameData.players_x[now_index]<16-1,!self.player_is_front(){
+            self.currentGameData.players_x[now_index]+=1
+            self.object_board.swapAt(self.currentGameData.players_y[now_index]*16+currentGameData.players_x[now_index], self.currentGameData.players_y[now_index]*16+currentGameData.players_x[now_index]+1)
         }
         
     }
@@ -313,8 +347,8 @@ class GameViewModel: ObservableObject {
     }
     func rest(){
         self.currentGameData.turn+=1
-        for i in self.currentGameData.players_id.indices{
-            if self.currentGameData.turn%self.currentGameData.players_id.endIndex==self.currentGameData.players_order[i]{
+        for i in self.currentGameData.players_order.indices{
+            if self.currentGameData.turn%self.currentGameData.players_order.endIndex==self.currentGameData.players_order[i]{
                 self.now_index=i
                 self.now_order=self.currentGameData.players_order[i]
             }

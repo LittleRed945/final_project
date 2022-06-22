@@ -20,17 +20,18 @@ struct PlayerStatusView:View{
         VStack(spacing:0){
             if show_ui{
                 ZStack{
-                    Text("").onChange(of: gameViewModel.currentGameData.turn, perform: {
-                        
+                    Text("").onChange(of: gameViewModel.currentGameData.turn, perform: {newValue in
+                        gameViewModel.now_index=gameViewModel.currentGameData.turn%gameViewModel.currentGameData.players_order.endIndex
+                        gameViewModel.now_order=gameViewModel.currentGameData.players_order[gameViewModel.now_index]
                     })
                     Rectangle().fill(uiColor1).frame(width: UIScreen.main.bounds.width-40, height: 50)
                     Rectangle().fill(uiColor2).frame(width: UIScreen.main.bounds.width-60, height: 30)
                     HStack{
-                        Text("Name:\(gameViewModel.players[gameViewModel.turn].name)").foregroundColor(.black).font(.custom("JackeyFont", size: 20))
+                        Text("Name:\(gameViewModel.userDatas[gameViewModel.now_index].userNickName)").foregroundColor(.black).font(.custom("JackeyFont", size: 20))
                         Spacer()
-                        Text("HP:\(gameViewModel.players[gameViewModel.turn].hp)").foregroundColor(.black).font(.custom("JackeyFont", size: 20))
+                        Text("HP:\(gameViewModel.currentGameData.players_hp[gameViewModel.now_index])").foregroundColor(.black).font(.custom("JackeyFont", size: 20))
                         Spacer()
-                        Text("SP:\(gameViewModel.players[gameViewModel.turn].sp)").foregroundColor(.black).font(.custom("JackeyFont", size: 20))
+                        Text("SP:\(gameViewModel.currentGameData.players_sp[gameViewModel.now_index])").foregroundColor(.black).font(.custom("JackeyFont", size: 20))
                         Spacer()
                     }.frame(width: UIScreen.main.bounds.width-80, height: 30)
                 }
@@ -38,7 +39,7 @@ struct PlayerStatusView:View{
             }
             Button(action: {
                 show_ui.toggle()
-                print(gameViewModel.turn)
+                
             }, label: {
                 Rectangle().fill(uiColor1).frame(width: 60, height: 10).overlay(){
                     if show_ui{

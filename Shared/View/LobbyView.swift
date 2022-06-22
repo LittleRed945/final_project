@@ -26,35 +26,37 @@ struct LobbyView:View{
     
     
     var body:some View{
-        Text("").frame(width: 0, height: 0).fullScreenCover(isPresented: $gameViewModel.currentGameData.is_started, content: {
-            GameView(gameViewModel: gameViewModel)
-        })
-        NavigationView{
-            VStack{
-                
-                HStack(spacing:20){
-                    //players
-                    ForEach(Range(0...3)){ i in
-                        ZStack{
-                            Rectangle().fill(uiColor1).frame(width: UIScreen.main.bounds.width/4-30, height:  UIScreen.main.bounds.width/4-30)
-                            Rectangle().fill(uiColor2).frame(width: UIScreen.main.bounds.width/4-50, height:  UIScreen.main.bounds.width/4-50)
-                        }.overlay{
-                            if i<gameViewModel.userDatas.endIndex{
-                                let character=Character(char:gameViewModel.userDatas[i].char, hair: gameViewModel.userDatas[i].hair, shirt: gameViewModel.userDatas[i].shirt, pants: gameViewModel.userDatas[i].pants, shoes: gameViewModel.userDatas[i].shoes)
-                                
-                                CharacterView(character: character,width:UIScreen.main.bounds.width/4-50,height: UIScreen.main.bounds.width/4-50).overlay(Text("\(gameViewModel.userDatas[i].userNickName)").foregroundColor(.black).frame(width:UIScreen.main.bounds.width/4-50).offset(y:-30))
-                                
-                            }else{
-                                Text("")
-                            }
-                            
-                            
-                        }
-                    }
+        ZStack{
+            Text("").frame(width: 0, height: 0).fullScreenCover(isPresented: $gameViewModel.currentGameData.is_started, content: {
+                GameView(gameViewModel: gameViewModel)
+            })
+            
+            NavigationView{
+                VStack{
                     
-                }
-                //start button
-                
+                    HStack(spacing:20){
+                        //players
+                        ForEach(Range(0...3)){ i in
+                            ZStack{
+                                Rectangle().fill(uiColor1).frame(width: UIScreen.main.bounds.width/4-30, height:  UIScreen.main.bounds.width/4-30)
+                                Rectangle().fill(uiColor2).frame(width: UIScreen.main.bounds.width/4-50, height:  UIScreen.main.bounds.width/4-50)
+                            }.overlay{
+                                if i<gameViewModel.userDatas.endIndex{
+                                    let character=Character(char:gameViewModel.userDatas[i].char, hair: gameViewModel.userDatas[i].hair, shirt: gameViewModel.userDatas[i].shirt, pants: gameViewModel.userDatas[i].pants, shoes: gameViewModel.userDatas[i].shoes)
+                                    
+                                    CharacterView(character: character,width:UIScreen.main.bounds.width/4-50,height: UIScreen.main.bounds.width/4-50).overlay(Text("\(gameViewModel.userDatas[i].userNickName)").foregroundColor(.black).frame(width:UIScreen.main.bounds.width/4-50).offset(y:-30))
+                                    
+                                }else{
+                                    Text("")
+                                }
+                                
+                                
+                            }
+                        }
+                        
+                    }
+                    //start button
+                    
                     Button(action: {
                         gameViewModel.startGame()
                     }, label: {
@@ -65,33 +67,30 @@ struct LobbyView:View{
                             Text("開始")
                         )
                     })
-//                    .disabled(!can_start)
+//                        .disabled(!can_start)
                     
+                    
+                }.edgesIgnoringSafeArea(.all)
+                    .background(Image("background"))
                 
-            }.edgesIgnoringSafeArea(.all)
-                .background(Image("background"))
-            
-        }.onAppear(perform: {
-            
-            
-            print(gameViewModel.currentGameData)
-            if firstAppear {
-                gameViewModel.checkGameChange()
-                configureBackground()
+            }.onAppear(perform: {
                 
-            }
-            
-            gameViewModel.CatchUserData()
-            for i in gameViewModel.userDatas.indices{
-                if i==0,Auth.auth().currentUser!.uid == gameViewModel.userDatas[i].id{
-                    can_start=true
+                
+                print(gameViewModel.currentGameData)
+                if firstAppear {
+                    gameViewModel.checkGameChange()
+                    configureBackground()
+                    
                 }
+                
+                gameViewModel.CatchUserData()
+               
+                firstAppear = false
+            }).onDisappear{
+                gameViewModel.leaveLobby()
+                print("deletelobby")
             }
-            firstAppear = false
-        }).onDisappear{
-            gameViewModel.leaveLobby()
-            print("deletelobby")
+            
         }
-        
     }
 }

@@ -14,5 +14,6 @@ struct Character {
     var shoes="01"
     var action=0
     var direction=0
+    var animation_id=0
     var offset=CGSize.zero
 }

@@ -32,8 +32,8 @@ struct GameBoardView: View {
                 LazyVGrid(columns: Array(repeating: GridItem(.fixed(gameViewModel.tile_size.width), spacing:0), count: 16),spacing:0){
                     ForEach(gameViewModel.object_board){tile in
                         if tile.object == .player{
-                            let character=Character(char:gameViewModel.userDatas[tile.index].char, hair: gameViewModel.userDatas[tile.index].hair, shirt: gameViewModel.userDatas[tile.index].shirt, pants: gameViewModel.userDatas[tile.index].pants, shoes: gameViewModel.userDatas[tile.index].shoes)
-                            CharacterView(character: character, width: gameViewModel.tile_size.width, height: gameViewModel.tile_size.height)
+                            
+                            CharacterView(character: gameViewModel.characters[tile.index], width: gameViewModel.tile_size.width, height: gameViewModel.tile_size.height)
                         }else{
                             Text("").frame(width: gameViewModel.tile_size.width, height: gameViewModel.tile_size.height)
                         }
