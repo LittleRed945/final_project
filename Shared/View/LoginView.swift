@@ -91,8 +91,10 @@ struct LoginView:View{
                         }
                     })
                     if not_first_login{
+                        
+                        
                         Text("").fullScreenCover(isPresented: $showView)
-                        { UserView()}
+                        { HomeView()}
                     }else{
                         Text("").fullScreenCover(isPresented: $showView)
                         { FirstLoginView(mail: mail, password: password)

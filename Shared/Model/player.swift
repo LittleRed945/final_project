@@ -9,7 +9,6 @@ import Foundation
 struct player:Identifiable{
     var id = UUID()
     var name = ""
-    var pos = CGPoint.zero
     var board_pos=0
     var hp = 50
     var atk = 1

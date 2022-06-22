@@ -14,30 +14,15 @@ struct GameView: View {
     @GestureState private var pinchMagnification: CGFloat = 1
     @Namespace var topId
     var body: some View {
-        ScrollViewReader{proxy in
+        //ScrollViewReader{proxy in
             ScrollView([.vertical,.horizontal], showsIndicators: false){
                 ZStack{
-                    Rectangle().fill(.blue).frame(width: 2160, height: 2160)
+                    //Rectangle().fill(.blue).frame(width: 2160, height: 2160)
                     LazyVGrid(columns: Array(repeating: GridItem(.fixed(32), spacing:0), count: 16),spacing:0){
                         ForEach(gameViewModel.board.indices,id:\.self){
                             t in
                             ZStack{
                                 Rectangle().fill(.green).frame(width: 32, height: 32)
-                                   
-                                //                                .overlay(
-                                //                                GeometryReader(content: { geometry in
-                                //                                    Color.clear
-                                //                                        .onAppear(perform: {
-                                //                                            for i in gameViewModel.players.indices{
-                                //                                                if t==gameViewModel.players[i].board_pos{
-                                //
-                                //                                                    gameViewModel.players[i].pos = geometry.frame(in: .global).origin
-                                //                                                }
-                                //                                            }
-                                //
-                                //                                        })
-                                //                                })
-                                //                            )
                                 ForEach(gameViewModel.players.indices){i in
                                     
                                     if t == gameViewModel.players[i].board_pos{
@@ -49,26 +34,27 @@ struct GameView: View {
                                 
                             }
                         }
-                    }.scaleEffect(currentMagnification * pinchMagnification)
+                    }
+                    //.scaleEffect(currentMagnification * pinchMagnification)
                     
                 }
-                Text("").onChange(of:gameViewModel.turn){ value in
-                    proxy.scrollTo(gameViewModel.turn)
-                }
-            }.gesture(MagnificationGesture()
-                        .updating($pinchMagnification, body: { (value, state, _) in
-                            state = value
-                        })
-                        .onEnded{ self.currentMagnification *= $0
-                if self.currentMagnification > 3 {
-                    self.currentMagnification = 3.0
-                }else if self.currentMagnification < 0.5 {
-                    self.currentMagnification = 0.5
-                    
-                }
-            }
-                    )
+//                Text("").onChange(of:gameViewModel.turn){ value in
+//                    proxy.scrollTo(gameViewModel.turn)
+//                }
+//            }.gesture(MagnificationGesture()
+//                        .updating($pinchMagnification, body: { (value, state, _) in
+//                            state = value
+//                        })
+//                        .onEnded{ self.currentMagnification *= $0
+//                if self.currentMagnification > 3 {
+//                    self.currentMagnification = 3.0
+//                }else if self.currentMagnification < 0.5 {
+//                    self.currentMagnification = 0.5
+//
+//                }
+            }.background(Rectangle().fill(.blue))
+//                    )
             
-        }
+        //}
     }
 }

@@ -13,5 +13,9 @@ struct UserData: Codable, Identifiable {
     let userGender: String
     let userBD: String
     let userFirstLogin: String
-    
+    var char="01"
+    var hair="01"
+    var shirt="01"
+    var pants="01"
+    var shoes="01"
 }

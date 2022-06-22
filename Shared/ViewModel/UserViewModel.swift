@@ -97,6 +97,32 @@ class UserViewModel{
             print(error)
         }
     }
+    //更新user角色外觀
+    func modifyCharacter(character:Character,uid:String) {
+            let db = Firestore.firestore()
+            let documentReference =
+                db.collection("users").document(uid)
+            documentReference.getDocument { document, error in
+                            
+              guard let document = document,
+                    document.exists,
+                    var user = try? document.data(as: UserData.self)
+              else {
+                        return
+              }
+                user.char=character.char
+                user.hair=character.hair
+                user.shirt=character.shirt
+                user.pants=character.pants
+                user.shoes=character.shoes
+              do {
+                 try documentReference.setData(from: user)
+              } catch {
+                 print(error)
+              }
+                            
+            }
+    }
     //上傳相片
        func uploadPhoto(image: UIImage, completion: @escaping (Result<URL, Error>) -> Void) {
            let fileReference = Storage.storage().reference().child(UUID().uuidString + ".png")

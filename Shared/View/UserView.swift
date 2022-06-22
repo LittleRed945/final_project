@@ -57,14 +57,6 @@ struct UserView: View {
                             Text("UID: " + currentUser!.uid)
                         }
                     }
-//                    Button(action: {
-//                        userViewModel.userSingOut()
-//                    }, label: {
-//                        ZStack{
-//                            Image("button")
-//                            Text("登出")
-//                        }
-//                    })
                 }
                 
                 

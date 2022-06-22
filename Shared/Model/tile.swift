@@ -10,5 +10,8 @@ import Foundation
 struct tile:Identifiable{
     var id = UUID()
     var type = "green"
-    var object = ""
+}
+struct object_tile:Identifiable{
+    var id = UUID()
+    var object=game_object.none
 }

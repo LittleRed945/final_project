@@ -66,7 +66,7 @@ struct CustomizedCharacterView:View{
                     pants_contrast=0.5
                     shoes_contrast=0.5
                 }, label: {
-                    Image("hair_button").contrast(shirt_contrast)
+                    Image("clothes_button").contrast(shirt_contrast)
                 })
                 Button(action: {
                     show_style_all=true
@@ -102,7 +102,9 @@ struct CustomizedCharacterView:View{
             characterView
             Spacer()
             Button(action: {
+                uploadCharacter()
                 uploadCharacterPhoto(img: characterView.snapshot())
+                
             }, label: {
                 ZStack{
                     Image("button")
@@ -114,15 +116,18 @@ struct CustomizedCharacterView:View{
         }
         .background(Image("background").resizable().scaledToFill())
             .fullScreenCover(isPresented:$showUView){
-                UserView()
+                HomeView()
             }
     }
-    func go2UserView() -> Void {
+    func go2HomeView() -> Void {
         print(Auth.auth().currentUser!.uid)
 //        self.presentationMode.wrappedValue.dismiss()
         self.showUView = true
-        print("C8763")
-        print(self.showUView)
+        
+    }
+    func uploadCharacter()->Void{
+        let userViewModel=UserViewModel()
+        userViewModel.modifyCharacter(character: character, uid:Auth.auth().currentUser!.uid )
     }
     func uploadCharacterPhoto(img:UIImage) -> Void {
         
@@ -139,7 +144,7 @@ struct CustomizedCharacterView:View{
                         print("dDDDDDEPPRI")
                         self.showAlert=true
                         print(self.showAlert)
-                        self.myAlert=Alert(title: Text("上傳圖片成功"), message: Text(alertMsg), dismissButton: .cancel(Text("確認"),action:go2UserView))
+                        self.myAlert=Alert(title: Text("上傳圖片成功"), message: Text(alertMsg), dismissButton: .cancel(Text("確認"),action:go2HomeView))
                 case .failure(_):
                     print("設置頭像錯誤")
                 }

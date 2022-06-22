@@ -49,10 +49,13 @@ struct PlayerStatusView:View{
     }
 }
 struct PlayerActionView:View{
+    var a=0
+    
     @ObservedObject var gameViewModel:GameViewModel
     let uiColor1:Color
     let uiColor2:Color
     @State var show_ui=true
+    @State var moveing=false
     var body: some View{
         VStack(spacing:0){
             Button(action: {
@@ -70,45 +73,101 @@ struct PlayerActionView:View{
                 ZStack{
                     Rectangle().fill(uiColor1).frame(width: UIScreen.main.bounds.width, height: 140)
                     Rectangle().fill(uiColor2).frame(width: UIScreen.main.bounds.width-20, height: 120)
-                    VStack{
-                        HStack{
+                    //if moveing{
+                    HStack{
+                        VStack(spacing:0){
                             Button(action: {
-                                gameViewModel.attack()
+                                gameViewModel.move_up()
                             }, label: {
-                                Rectangle().stroke(.black,lineWidth: 7).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 45).overlay(){
-                                    Text("攻擊").foregroundColor(.black).font(.system( size: 30))
-                                }
+                                Image(systemName:"arrowtriangle.up.circle" ).resizable().foregroundColor(.black).opacity(0.8).frame(width:30 , height: 30)
                             })
+                            HStack(spacing:0){
+                                Button(action: {
+                                    gameViewModel.move_left()
+                                }, label: {
+                                    Image(systemName:"arrowtriangle.left.circle" ).resizable().foregroundColor(.black).opacity(0.8).frame(width:30 , height: 30)
+                                })
+                                Spacer().frame(width: 30, height: 30)
+                                Button(action: {
+                                    gameViewModel.move_right()
+                                }, label: {
+                                    Image(systemName:"arrowtriangle.right.circle" ).resizable().foregroundColor(.black).opacity(0.8).frame(width:30, height: 30)
+                                })
+                            }
                             Button(action: {
-                                show_ui.toggle()
-                                gameViewModel.move()
+                                gameViewModel.move_down()
                             }, label: {
-                                Rectangle().stroke(.black,lineWidth: 7).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 45).overlay(){
-                                    Text("移動").foregroundColor(.black).font(.system( size: 30))
-                                }
-                            }).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 45)
-
-                        }
-                        HStack{
-                            Button(action: {
-                                gameViewModel.use_item()
-                            }, label: {
-                                Rectangle().stroke(.black,lineWidth: 7).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 45).overlay(){
-                                    Text("使用道具").foregroundColor(.black).font(.system( size: 30))
-                                }
-                            }).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 45)
-                            Button(action: {
-                                gameViewModel.rest()
-                            }, label: {
-                                Rectangle().stroke(.black,lineWidth: 7).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 45).overlay(){
-                                    Text("休息").foregroundColor(.black).font(.system( size: 30))
-                                }
-                            }).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 45)
+                                Image(systemName:"arrowtriangle.down.circle" ).resizable().foregroundColor(.black).opacity(0.8).frame(width:30, height: 30)
+                            })
+                        }.frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 120)
+                        VStack(spacing:0){
+                        Button(action: {
+                            gameViewModel.attack()
+                        }, label: {
+                            Rectangle().stroke(.black,lineWidth: 7).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 35).overlay(){
+                                Text("攻擊").foregroundColor(.black).font(.system( size: 30))
+                            }
+                        }).disabled(gameViewModel.can_attack)
+                        Button(action: {
+                            gameViewModel.use_item()
+                        }, label: {
+                            Rectangle().stroke(.black,lineWidth: 7).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 35).overlay(){
+                                Text("使用道具").foregroundColor(.black).font(.system( size: 30))
+                            }
+                        })
+                        Button(action: {
+                            gameViewModel.rest()
+                        }, label: {
+                            Rectangle().stroke(.black,lineWidth: 7).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height:35).overlay(){
+                                Text("休息").foregroundColor(.black).font(.system( size: 30))
+                            }
+                        })
                         }
                     }
-                }
+                    // }else{
+                    //                        VStack{
+                    //                            HStack{
+                    //                                Button(action: {
+                    //                                    gameViewModel.attack()
+                    //                                }, label: {
+                    //                                    Rectangle().stroke(.black,lineWidth: 7).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 45).overlay(){
+                    //                                        Text("攻擊").foregroundColor(.black).font(.system( size: 30))
+                    //                                    }
+                    //                                })
+                    //                                Button(action: {
+                    //                                    moveing.toggle()
+                    //                                    gameViewModel.move()
+                    //                                }, label: {
+                    //                                    Rectangle().stroke(.black,lineWidth: 7).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 45).overlay(){
+                    //                                        Text("移動").foregroundColor(.black).font(.system( size: 30))
+                    //                                    }
+                    //                                }).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 45)
+                    //
+                    //                            }
+                    //                            HStack{
+                    //                                Button(action: {
+                    //                                    gameViewModel.use_item()
+                    //                                }, label: {
+                    //                                    Rectangle().stroke(.black,lineWidth: 7).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 45).overlay(){
+                    //                                        Text("使用道具").foregroundColor(.black).font(.system( size: 30))
+                    //                                    }
+                    //                                }).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 45)
+                    //                                Button(action: {
+                    //                                    gameViewModel.rest()
+                    //                                }, label: {
+                    //                                    Rectangle().stroke(.black,lineWidth: 7).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 45).overlay(){
+                    //                                        Text("休息").foregroundColor(.black).font(.system( size: 30))
+                    //                                    }
+                    //                                }).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 45)
+                    //                            }
+                    //                        }
+                    //                    }
+                    //}
+                    
+                }//if show_ui end
+                
             }
-            
         }
     }
 }
+

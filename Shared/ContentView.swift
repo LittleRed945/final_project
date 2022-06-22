@@ -9,10 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var gameViewModel=GameViewModel()
+    @State var mail = ""
+    @State var password=""
     var body: some View {
         ZStack{
-        GameView(gameViewModel: gameViewModel)
-            GameUIView(gameViewModel: gameViewModel)
+            LoginView(mail: $mail, password: $password)
+//        GameView(gameViewModel: gameViewModel)
+//            GameUIView(gameViewModel: gameViewModel)
         }
         //AdView()
     }
