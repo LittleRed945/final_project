@@ -84,25 +84,25 @@ struct PlayerActionView:View{
                                 gameViewModel.move_up()
                             }, label: {
                                 Image(systemName:"arrowtriangle.up.circle" ).resizable().foregroundColor(.black).opacity(0.8).frame(width:30 , height: 30)
-                            })
+                            }).disabled(!gameViewModel.can_action)
                             HStack(spacing:0){
                                 Button(action: {
                                     gameViewModel.move_left()
                                 }, label: {
                                     Image(systemName:"arrowtriangle.left.circle" ).resizable().foregroundColor(.black).opacity(0.8).frame(width:30 , height: 30)
-                                })
+                                }).disabled(!gameViewModel.can_action)
                                 Spacer().frame(width: 30, height: 30)
                                 Button(action: {
                                     gameViewModel.move_right()
                                 }, label: {
                                     Image(systemName:"arrowtriangle.right.circle" ).resizable().foregroundColor(.black).opacity(0.8).frame(width:30, height: 30)
-                                })
+                                }).disabled(!gameViewModel.can_action)
                             }
                             Button(action: {
                                 gameViewModel.move_down()
                             }, label: {
                                 Image(systemName:"arrowtriangle.down.circle" ).resizable().foregroundColor(.black).opacity(0.8).frame(width:30, height: 30)
-                            })
+                            }).disabled(!gameViewModel.can_action)
                         }.frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 120)
                         VStack(spacing:0){
                         Button(action: {
@@ -111,21 +111,21 @@ struct PlayerActionView:View{
                             Rectangle().stroke(.black,lineWidth: 7).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 35).overlay(){
                                 Text("攻擊").foregroundColor(.black).font(.system( size: 30))
                             }
-                        }).disabled(gameViewModel.can_attack)
-                        Button(action: {
-                            gameViewModel.use_item()
-                        }, label: {
-                            Rectangle().stroke(.black,lineWidth: 7).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 35).overlay(){
-                                Text("使用道具").foregroundColor(.black).font(.system( size: 30))
-                            }
-                        })
+                        }).disabled(!gameViewModel.can_action)
+//                        Button(action: {
+//                            gameViewModel.use_item()
+//                        }, label: {
+//                            Rectangle().stroke(.black,lineWidth: 7).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 35).overlay(){
+//                                Text("使用道具").foregroundColor(.black).font(.system( size: 30))
+//                            }
+//                        }).disabled(!gameViewModel.can_action)
                         Button(action: {
                             gameViewModel.rest()
                         }, label: {
                             Rectangle().stroke(.black,lineWidth: 7).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height:35).overlay(){
                                 Text("休息").foregroundColor(.black).font(.system( size: 30))
                             }
-                        })
+                        }).disabled(!gameViewModel.can_action)
                         }
                     }
                     // }else{

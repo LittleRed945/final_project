@@ -15,6 +15,7 @@ struct LobbyView:View{
     @State private var can_start=false
     @State private var firstAppear = true
     @ObservedObject  var gameViewModel:GameViewModel
+    @State private var is_master=false
     //設定navigation bar的背景顏色
     func configureBackground() {
         let barAppearance = UINavigationBarAppearance()
@@ -59,6 +60,7 @@ struct LobbyView:View{
                     
                     Button(action: {
                         gameViewModel.startGame()
+                        
                     }, label: {
                         ZStack{
                             Rectangle().fill(uiColor1).frame(width: UIScreen.main.bounds.width/2, height:  UIScreen.main.bounds.width/4-50)
@@ -66,7 +68,7 @@ struct LobbyView:View{
                         }.overlay(
                             Text("開始")
                         )
-                    })
+                    }).accessibility(hidden: !is_master)
 //                        .disabled(!can_start)
                     
                     
@@ -76,14 +78,23 @@ struct LobbyView:View{
             }.onAppear(perform: {
                 
                 
-                print(gameViewModel.currentGameData)
+                print("DD")
                 if firstAppear {
-                    gameViewModel.checkGameChange()
+                   
+                    DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+                        gameViewModel.checkGameChange()
+                        DispatchQueue.main.asyncAfter(deadline: .now()+1, execute:{
+                        if Auth.auth().currentUser!.uid == gameViewModel.currentGameData.players_id[0]{
+                            is_master=true
+                        }
+                        })
+                    })
+                    
                     configureBackground()
                     
                 }
                 
-                gameViewModel.CatchUserData()
+                
                
                 firstAppear = false
             }).onDisappear{

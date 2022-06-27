@@ -13,11 +13,11 @@ struct CharacterView:View{
     let height:CGFloat
     var body:some View{
         ZStack{
-            Image("char\(character.char)-\(character.direction)-\(character.action)").resizable().scaledToFit().frame(width: width, height: height).offset(character.offset)
-            Image("hair\(character.hair)-\(character.direction)-\(character.action)").resizable().scaledToFit().frame(width: width, height: height).offset(character.offset)
-            Image("shirt\(character.shirt)-\(character.direction)-\(character.action)").resizable().scaledToFit().frame(width: width, height: height).offset(character.offset)
-            Image("pants\(character.pants)-\(character.direction)-\(character.action)").resizable().scaledToFit().frame(width: width, height: height).offset(character.offset)
-            Image("shoes\(character.shoes)-\(character.direction)-\(character.action)").resizable().scaledToFit().frame(width: width, height: height).offset(character.offset)
+            Image("char\(character.char)-\(character.action)-\(character.animation_id)").resizable().scaledToFit().frame(width: width, height: height).offset(character.offset)
+            Image("hair\(character.hair)-\(character.action)-\(character.animation_id)").resizable().scaledToFit().frame(width: width, height: height).offset(character.offset)
+            Image("shirt\(character.shirt)-\(character.action)-\(character.animation_id)").resizable().scaledToFit().frame(width: width, height: height).offset(character.offset)
+            Image("pants\(character.pants)-\(character.action)-\(character.animation_id)").resizable().scaledToFit().frame(width: width, height: height).offset(character.offset)
+            Image("shoes\(character.shoes)-\(character.action)-\(character.animation_id)").resizable().scaledToFit().frame(width: width, height: height).offset(character.offset)
         }
     }
 }

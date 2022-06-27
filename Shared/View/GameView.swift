@@ -6,6 +6,8 @@ struct GameView: View {
     @ObservedObject var gameViewModel:GameViewModel
     @State private var is_dead=false
     @State private var firstAppear=true
+    var uiColor1=Color(red: 0.5, green: 101/256, blue: 65/256)
+    var uiColor2=Color(red: 199/256, green: 184/256, blue: 143/256)
     var body: some View{
         ZStack{
             Text("").onAppear{
@@ -13,31 +15,42 @@ struct GameView: View {
             }
             if gameViewModel.currentGameData.players_role[gameViewModel.my_index]==""{
                 ChooseRoleView(gameViewModel: gameViewModel)
+            }else if gameViewModel.currentGameData.allReady{
+                Text("").onAppear(perform: {
+                    gameViewModel.setTheSpawn()
+                })
+                GameBoardView(gameViewModel: gameViewModel)
+                Text("").onAppear{
+                    print("DER2")
+                }
+                GameUIView(gameViewModel: gameViewModel)
+                Text("").onAppear{
+                    print("DER3")
+                }
+                if gameViewModel.currentGameData.players_hp[gameViewModel.my_index]<=0{
+                    Button(action: {
+                        is_dead=true
+                        gameViewModel.leaveLobby()
+                    }, label:{
+                        Text("離開")
+                    }).fullScreenCover(isPresented: $is_dead,content:{HomeView()})
+                }
             }else{
-            GameBoardView(gameViewModel: gameViewModel)
-            Text("").onAppear{
-                print("DER2")
+                ZStack{
+                    Rectangle().fill(uiColor1).frame(width: UIScreen.main.bounds.width/2, height:  UIScreen.main.bounds.height/2)
+                    Rectangle().fill(uiColor2).frame(width: UIScreen.main.bounds.width/2-20, height:  UIScreen.main.bounds.height/2-20)
+                }.overlay(
+                
+                    Text("\(gameViewModel.my_index)")
+                )
             }
-            GameUIView(gameViewModel: gameViewModel)
-            Text("").onAppear{
-                print("DER3")
-            }
-            }
-            if gameViewModel.currentGameData.players_hp[gameViewModel.my_index]<=0{
-                Button(action: {
-                    is_dead=true
-                    gameViewModel.leaveLobby()
-                }, label:{
-                    Text("離開")
-                }).fullScreenCover(isPresented: $is_dead,content:{HomeView()})
-            }
+            
         }.onAppear(perform: {
             
-            
-            print(gameViewModel.currentGameData)
             if firstAppear {
-                gameViewModel.checkGameChange()
+                gameViewModel.generateMap()
                 
+                gameViewModel.setTheSpawn()
             }
             firstAppear = false
         })

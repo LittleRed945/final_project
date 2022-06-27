@@ -13,7 +13,7 @@ struct Character {
     var pants="02"
     var shoes="01"
     var action=0
-    var direction=0
+    var direction=0 //customized
     var animation_id=0
     var offset=CGSize.zero
 }

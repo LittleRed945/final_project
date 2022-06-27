@@ -64,11 +64,12 @@ struct GameBoardView: View {
             //
             //                }
         }.onAppear{
+            print("MyIndex")
+            print(gameViewModel.my_index)
             if firstAppear{
                 for _ in Range(0...16*16-1){
                     board.append("")
                 }
-                gameViewModel.generateMap()
             }
             firstAppear=false
         }.background(Rectangle().fill(.blue))

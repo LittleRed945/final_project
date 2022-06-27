@@ -24,6 +24,7 @@ struct HomeView:View{
         UINavigationBar.appearance().scrollEdgeAppearance = barAppearance
     }
     func joinTheLobby()->AnyView{
+        
         if lobbyExist{
             return AnyView(LobbyView(gameViewModel:gameViewModel))
         }else{
@@ -85,7 +86,7 @@ struct HomeView:View{
                                         case .failure(_):
                                             print("使用者資料抓取失敗")
                                             lobbyExist=false
-                                            isJoinLobby=false
+                                            
                                         }
                                     }
                                 }
