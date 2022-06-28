@@ -11,7 +11,12 @@ extension AVPlayer {
                                             "mp3") else { fatalError("Failed to find sound file.") }
         return AVPlayer(url: url)
     }()
-    static let sharedSpinPlayer: AVPlayer = {
+    static let sharedLosePlayer: AVPlayer = {
+        guard let url = Bundle.main.url(forResource: "game-over", withExtension:
+                                            "mp3") else { fatalError("Failed to find sound file.") }
+        return AVPlayer(url: url)
+    }()
+    static let sharedWinPlayer: AVPlayer = {
         guard let url = Bundle.main.url(forResource: "success", withExtension:
                                             "mp3") else { fatalError("Failed to find sound file.") }
         return AVPlayer(url: url)

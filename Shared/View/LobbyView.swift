@@ -32,7 +32,7 @@ struct LobbyView:View{
                 GameView(gameViewModel: gameViewModel)
             })
             
-            NavigationView{
+            
                 VStack{
                     
                     HStack(spacing:20){
@@ -79,18 +79,18 @@ struct LobbyView:View{
                 }.edgesIgnoringSafeArea(.all)
                     .background(Image("background"))
                 
-            }.onAppear(perform: {
+            .onAppear(perform: {
                 
                 
                 print("DD")
                 if firstAppear {
-                   
+                    
                     DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
                         gameViewModel.checkGameChange()
                         DispatchQueue.main.asyncAfter(deadline: .now()+1, execute:{
-                        if Auth.auth().currentUser!.uid == gameViewModel.currentGameData.players_id[0]{
-                            is_master=true
-                        }
+                            if Auth.auth().currentUser!.uid == gameViewModel.currentGameData.players_id[0]{
+                                is_master=true
+                            }
                         })
                     })
                     
@@ -99,11 +99,14 @@ struct LobbyView:View{
                 }
                 
                 
-               
+                
                 firstAppear = false
             }).onDisappear{
                 gameViewModel.leaveLobby()
                 print("deletelobby")
+                
+                
+                
             }
             
         }

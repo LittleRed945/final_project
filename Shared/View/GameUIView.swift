@@ -114,13 +114,13 @@ struct PlayerActionView:View{
                                 Text("攻擊").foregroundColor(.black).font(.system( size: 30))
                             }
                         }).disabled(!gameViewModel.can_action)
-                        Button(action: {
-                            print(gameViewModel.can_action)
-                        }, label: {
-                            Rectangle().stroke(.black,lineWidth: 7).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 35).overlay(){
-                                Text("使用道具").foregroundColor(.black).font(.system( size: 30))
-                            }
-                        }).disabled(gameViewModel.can_action)
+//                        Button(action: {
+//                            print(gameViewModel.can_action)
+//                        }, label: {
+//                            Rectangle().stroke(.black,lineWidth: 7).frame(width:(UIScreen.main.bounds.width-20)/2-30 , height: 35).overlay(){
+//                                Text("使用道具").foregroundColor(.black).font(.system( size: 30))
+//                            }
+//                        }).disabled(gameViewModel.can_action)
                         Button(action: {
                             gameViewModel.rest()
                         }, label: {

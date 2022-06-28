@@ -97,6 +97,27 @@ class UserViewModel{
             print(error)
         }
     }
+    //
+    func updataUserData(ud:UserData,uid:String){
+        let db = Firestore.firestore()
+        let documentReference =
+            db.collection("users").document(uid)
+        documentReference.getDocument { document, error in
+                        
+          guard let document = document,
+                document.exists,
+                var user = try? document.data(as: UserData.self)
+          else {
+                    return
+          }
+          do {
+             try documentReference.setData(from: ud)
+          } catch {
+             print(error)
+          }
+                        
+        }
+    }
     //更新user角色外觀
     func modifyCharacter(character:Character,uid:String) {
             let db = Firestore.firestore()

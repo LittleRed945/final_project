@@ -33,6 +33,10 @@
 		AA7EBD43285971F90087F869 /* Pixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA868F222856E0F100EF3E35 /* Pixel.ttf */; };
 		AA7F680E284DF33300236F0A /* GameBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F680D284DF33300236F0A /* GameBoardView.swift */; };
 		AA7F6811284DF37900236F0A /* tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F6810284DF37900236F0A /* tile.swift */; };
+		AA80929D286AD2520093A0B6 /* RankViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA80929C286AD2520093A0B6 /* RankViewModel.swift */; };
+		AA80929F286AD2970093A0B6 /* RankData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA80929E286AD2970093A0B6 /* RankData.swift */; };
+		AA8092A1286AECA50093A0B6 /* RankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8092A0286AECA50093A0B6 /* RankView.swift */; };
+		AA8092A3286B32DE0093A0B6 /* InstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8092A2286B32DD0093A0B6 /* InstructionView.swift */; };
 		AA84DD83286308DE00D43D76 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DD82286308DE00D43D76 /* GameView.swift */; };
 		AA84DD8528630B9000D43D76 /* ChooseRoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84DD8428630B9000D43D76 /* ChooseRoleView.swift */; };
 		AA868EFA2856DB8B00EF3E35 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA868EF92856DB8B00EF3E35 /* UserViewModel.swift */; };
@@ -53,11 +57,11 @@
 		AA8D2CF5286A9CBB00135575 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8D2CF4286A9CBB00135575 /* GameOverView.swift */; };
 		AA8D2CF7286AA05700135575 /* WinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8D2CF6286AA05700135575 /* WinView.swift */; };
 		AA8D2D00286AA14000135575 /* game-start-6104.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AA8D2CF9286AA13F00135575 /* game-start-6104.mp3 */; };
-		AA8D2D01286AA14000135575 /* game-over-arcade-6435.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AA8D2CFA286AA13F00135575 /* game-over-arcade-6435.mp3 */; };
+		AA8D2D01286AA14000135575 /* game-over.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AA8D2CFA286AA13F00135575 /* game-over.mp3 */; };
 		AA8D2D02286AA14000135575 /* slash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AA8D2CFB286AA13F00135575 /* slash.mp3 */; };
 		AA8D2D03286AA14000135575 /* gamemusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AA8D2CFC286AA13F00135575 /* gamemusic.mp3 */; };
 		AA8D2D04286AA14000135575 /* decidemp3-14575.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AA8D2CFD286AA14000135575 /* decidemp3-14575.mp3 */; };
-		AA8D2D05286AA14000135575 /* success-fanfare-trumpets-6185.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AA8D2CFE286AA14000135575 /* success-fanfare-trumpets-6185.mp3 */; };
+		AA8D2D05286AA14000135575 /* success.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AA8D2CFE286AA14000135575 /* success.mp3 */; };
 		AA8D2D06286AA14000135575 /* calm_game_music_1-49209.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AA8D2CFF286AA14000135575 /* calm_game_music_1-49209.mp3 */; };
 		AA8D2D08286AA16300135575 /* AVPlayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8D2D07286AA16300135575 /* AVPlayer+Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -84,6 +88,10 @@
 		AA7D4ABC28606C9A0036D03A /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		AA7F680D284DF33300236F0A /* GameBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoardView.swift; sourceTree = "<group>"; };
 		AA7F6810284DF37900236F0A /* tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tile.swift; sourceTree = "<group>"; };
+		AA80929C286AD2520093A0B6 /* RankViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankViewModel.swift; sourceTree = "<group>"; };
+		AA80929E286AD2970093A0B6 /* RankData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankData.swift; sourceTree = "<group>"; };
+		AA8092A0286AECA50093A0B6 /* RankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankView.swift; sourceTree = "<group>"; };
+		AA8092A2286B32DD0093A0B6 /* InstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionView.swift; sourceTree = "<group>"; };
 		AA84DD82286308DE00D43D76 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		AA84DD8428630B9000D43D76 /* ChooseRoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRoleView.swift; sourceTree = "<group>"; };
 		AA868EF92856DB8B00EF3E35 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -104,11 +112,11 @@
 		AA8D2CF4286A9CBB00135575 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		AA8D2CF6286AA05700135575 /* WinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinView.swift; sourceTree = "<group>"; };
 		AA8D2CF9286AA13F00135575 /* game-start-6104.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "game-start-6104.mp3"; sourceTree = "<group>"; };
-		AA8D2CFA286AA13F00135575 /* game-over-arcade-6435.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "game-over-arcade-6435.mp3"; sourceTree = "<group>"; };
+		AA8D2CFA286AA13F00135575 /* game-over.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "game-over.mp3"; sourceTree = "<group>"; };
 		AA8D2CFB286AA13F00135575 /* slash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = slash.mp3; sourceTree = "<group>"; };
 		AA8D2CFC286AA13F00135575 /* gamemusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gamemusic.mp3; sourceTree = "<group>"; };
 		AA8D2CFD286AA14000135575 /* decidemp3-14575.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "decidemp3-14575.mp3"; sourceTree = "<group>"; };
-		AA8D2CFE286AA14000135575 /* success-fanfare-trumpets-6185.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "success-fanfare-trumpets-6185.mp3"; sourceTree = "<group>"; };
+		AA8D2CFE286AA14000135575 /* success.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = success.mp3; sourceTree = "<group>"; };
 		AA8D2CFF286AA14000135575 /* calm_game_music_1-49209.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "calm_game_music_1-49209.mp3"; sourceTree = "<group>"; };
 		AA8D2D07286AA16300135575 /* AVPlayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -195,6 +203,7 @@
 			children = (
 				AA868EF92856DB8B00EF3E35 /* UserViewModel.swift */,
 				AA7D08AE284EE7C70079974E /* GameViewModel.swift */,
+				AA80929C286AD2520093A0B6 /* RankViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -206,20 +215,22 @@
 				AA84DD82286308DE00D43D76 /* GameView.swift */,
 				AA84DD8428630B9000D43D76 /* ChooseRoleView.swift */,
 				AA868F202856DD6100EF3E35 /* GameUIView.swift */,
+				AA8D2CF4286A9CBB00135575 /* GameOverView.swift */,
+				AA8D2CF6286AA05700135575 /* WinView.swift */,
 				AA868F152856DC3B00EF3E35 /* CustomizeCharacterView.swift */,
 				AA868F172856DC3B00EF3E35 /* FirstLoginView.swift */,
 				AA868F142856DC3B00EF3E35 /* LoginView.swift */,
 				AA868F192856DC3B00EF3E35 /* RegisterView.swift */,
 				AA868F162856DC3B00EF3E35 /* ShowComponentsView.swift */,
+				AA8092A0286AECA50093A0B6 /* RankView.swift */,
 				AA868F182856DC3B00EF3E35 /* UserView.swift */,
 				AA7BB9ED285059B6004B59E1 /* AdView.swift */,
 				AA7D4ABA286065580036D03A /* HomeView.swift */,
+				AA8092A2286B32DD0093A0B6 /* InstructionView.swift */,
 				AA78831C28614F8400D17C16 /* LobbyView.swift */,
 				AA78831E286151F100D17C16 /* CreateLobbyView.swift */,
 				AA7D4ABC28606C9A0036D03A /* SettingView.swift */,
 				AA78832228616DA000D17C16 /* CharacterView.swift */,
-				AA8D2CF4286A9CBB00135575 /* GameOverView.swift */,
-				AA8D2CF6286AA05700135575 /* WinView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -230,6 +241,7 @@
 				AA868F0A2856DC1100EF3E35 /* LoginError.swift */,
 				AA868F0B2856DC1100EF3E35 /* Character.swift */,
 				AA7883202861554C00D17C16 /* GameData.swift */,
+				AA80929E286AD2970093A0B6 /* RankData.swift */,
 				AA868F082856DC1100EF3E35 /* UserData.swift */,
 				AA868F0C2856DC1100EF3E35 /* MyTextFieldStyle.swift */,
 				AA868F092856DC1100EF3E35 /* Style.swift */,
@@ -246,11 +258,11 @@
 			children = (
 				AA8D2CFF286AA14000135575 /* calm_game_music_1-49209.mp3 */,
 				AA8D2CFD286AA14000135575 /* decidemp3-14575.mp3 */,
-				AA8D2CFA286AA13F00135575 /* game-over-arcade-6435.mp3 */,
+				AA8D2CFA286AA13F00135575 /* game-over.mp3 */,
 				AA8D2CF9286AA13F00135575 /* game-start-6104.mp3 */,
 				AA8D2CFC286AA13F00135575 /* gamemusic.mp3 */,
 				AA8D2CFB286AA13F00135575 /* slash.mp3 */,
-				AA8D2CFE286AA14000135575 /* success-fanfare-trumpets-6185.mp3 */,
+				AA8D2CFE286AA14000135575 /* success.mp3 */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -352,8 +364,8 @@
 				AA78B6A5284712260000CC5A /* Assets.xcassets in Resources */,
 				AA8D2D02286AA14000135575 /* slash.mp3 in Resources */,
 				AA78B6B2284718380000CC5A /* Localizable.strings in Resources */,
-				AA8D2D05286AA14000135575 /* success-fanfare-trumpets-6185.mp3 in Resources */,
-				AA8D2D01286AA14000135575 /* game-over-arcade-6435.mp3 in Resources */,
+				AA8D2D05286AA14000135575 /* success.mp3 in Resources */,
+				AA8D2D01286AA14000135575 /* game-over.mp3 in Resources */,
 				AA7BB9F228505FE3004B59E1 /* GoogleService-Info.plist in Resources */,
 				AA8D2D06286AA14000135575 /* calm_game_music_1-49209.mp3 in Resources */,
 				AA8D2D00286AA14000135575 /* game-start-6104.mp3 in Resources */,
@@ -381,11 +393,13 @@
 				AA78B6A3284712260000CC5A /* ContentView.swift in Sources */,
 				AA78831F286151F100D17C16 /* CreateLobbyView.swift in Sources */,
 				AA868F1F2856DC3B00EF3E35 /* RegisterView.swift in Sources */,
+				AA8092A3286B32DE0093A0B6 /* InstructionView.swift in Sources */,
 				AA868F1D2856DC3B00EF3E35 /* FirstLoginView.swift in Sources */,
 				AA868F132856DC1200EF3E35 /* RegisterError.swift in Sources */,
 				AA868F1E2856DC3B00EF3E35 /* UserView.swift in Sources */,
 				AA78832328616DA000D17C16 /* CharacterView.swift in Sources */,
 				AA78831D28614F8400D17C16 /* LobbyView.swift in Sources */,
+				AA80929D286AD2520093A0B6 /* RankViewModel.swift in Sources */,
 				AA7883212861554C00D17C16 /* GameData.swift in Sources */,
 				AA868F1B2856DC3B00EF3E35 /* CustomizeCharacterView.swift in Sources */,
 				AA868F122856DC1200EF3E35 /* Style.swift in Sources */,
@@ -394,6 +408,7 @@
 				AA868F0F2856DC1200EF3E35 /* UserData.swift in Sources */,
 				AA868F1C2856DC3B00EF3E35 /* ShowComponentsView.swift in Sources */,
 				AA868F0E2856DC1200EF3E35 /* LoginError.swift in Sources */,
+				AA80929F286AD2970093A0B6 /* RankData.swift in Sources */,
 				AA868EFA2856DB8B00EF3E35 /* UserViewModel.swift in Sources */,
 				AA8D2CF7286AA05700135575 /* WinView.swift in Sources */,
 				AA7F680E284DF33300236F0A /* GameBoardView.swift in Sources */,
@@ -404,6 +419,7 @@
 				AA7BB9EE285059B6004B59E1 /* AdView.swift in Sources */,
 				AA78D7A9285EF60F00116808 /* game_object.swift in Sources */,
 				AA8D2CF5286A9CBB00135575 /* GameOverView.swift in Sources */,
+				AA8092A1286AECA50093A0B6 /* RankView.swift in Sources */,
 				AA7D08AF284EE7C70079974E /* GameViewModel.swift in Sources */,
 				AA7D08B1284EEB500079974E /* player.swift in Sources */,
 				AA78B6A1284712260000CC5A /* final_projectApp.swift in Sources */,
@@ -562,8 +578,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -594,8 +610,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
