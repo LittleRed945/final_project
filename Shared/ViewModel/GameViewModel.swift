@@ -96,9 +96,7 @@ class GameViewModel: ObservableObject {
             self.currentGameData=game
             if self.currentGameData.players_id.endIndex != self.userDatas.endIndex{
                 self.CatchUserData()
-                if self.currentGameData.players_id.endIndex==1{
-                    self.is_win=true
-                }
+                
                 self.is_gameover=true
                 for id in self.currentGameData.players_id{
                     if id == Auth.auth().currentUser!.uid{
@@ -110,7 +108,10 @@ class GameViewModel: ObservableObject {
             
             
             if self.currentGameData.is_started , self.currentGameData.allReady{
-                
+                if !self.is_gameover,self.currentGameData.players_id.endIndex<=1{
+                    print(self.currentGameData.players_id)
+                    self.is_win=true
+                }
                 if self.my_index>=self.currentGameData.players_id.endIndex || self.currentGameData.players_id[self.my_index] != Auth.auth().currentUser!.uid{
                     self.refreshGame()
                 }

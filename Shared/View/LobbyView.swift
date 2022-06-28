@@ -46,7 +46,11 @@ struct LobbyView:View{
                                     let character=Character(char:gameViewModel.userDatas[i].char, hair: gameViewModel.userDatas[i].hair, shirt: gameViewModel.userDatas[i].shirt, pants: gameViewModel.userDatas[i].pants, shoes: gameViewModel.userDatas[i].shoes)
                                     
                                     CharacterView(character: character,width:UIScreen.main.bounds.width/4-50,height: UIScreen.main.bounds.width/4-50).overlay(Text("\(gameViewModel.userDatas[i].userNickName)").foregroundColor(.black).frame(width:UIScreen.main.bounds.width/4-50).offset(y:-30))
-                                    
+                                        .onAppear{
+                                            if is_master,gameViewModel.currentGameData.players_id.endIndex>=2{
+                                                can_start=true
+                                            }
+                                        }
                                 }else{
                                     Text("")
                                 }
@@ -69,7 +73,7 @@ struct LobbyView:View{
                             Text("開始")
                         )
                     }).accessibility(hidden: !is_master)
-//                        .disabled(!can_start)
+                        .disabled(!can_start)
                     
                     
                 }.edgesIgnoringSafeArea(.all)
