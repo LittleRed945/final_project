@@ -7,11 +7,14 @@
 import SwiftUI
 import Firebase
 import GoogleMobileAds
+import AVFoundation
 @main
 struct final_projectApp: App {
     init() {
     FirebaseApp.configure()
     GADMobileAds.sharedInstance().start()
+        AVPlayer.setupBgMusic()
+        AVPlayer.bgQueuePlayer.play()
     }
     var body: some Scene {
         WindowGroup {

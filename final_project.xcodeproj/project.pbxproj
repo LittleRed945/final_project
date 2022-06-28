@@ -50,6 +50,16 @@
 		AA868F1F2856DC3B00EF3E35 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA868F192856DC3B00EF3E35 /* RegisterView.swift */; };
 		AA868F212856DD6100EF3E35 /* GameUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA868F202856DD6100EF3E35 /* GameUIView.swift */; };
 		AA868F252856E1E000EF3E35 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = AA868F242856E1E000EF3E35 /* NukeUI */; };
+		AA8D2CF5286A9CBB00135575 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8D2CF4286A9CBB00135575 /* GameOverView.swift */; };
+		AA8D2CF7286AA05700135575 /* WinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8D2CF6286AA05700135575 /* WinView.swift */; };
+		AA8D2D00286AA14000135575 /* game-start-6104.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AA8D2CF9286AA13F00135575 /* game-start-6104.mp3 */; };
+		AA8D2D01286AA14000135575 /* game-over-arcade-6435.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AA8D2CFA286AA13F00135575 /* game-over-arcade-6435.mp3 */; };
+		AA8D2D02286AA14000135575 /* slash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AA8D2CFB286AA13F00135575 /* slash.mp3 */; };
+		AA8D2D03286AA14000135575 /* gamemusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AA8D2CFC286AA13F00135575 /* gamemusic.mp3 */; };
+		AA8D2D04286AA14000135575 /* decidemp3-14575.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AA8D2CFD286AA14000135575 /* decidemp3-14575.mp3 */; };
+		AA8D2D05286AA14000135575 /* success-fanfare-trumpets-6185.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AA8D2CFE286AA14000135575 /* success-fanfare-trumpets-6185.mp3 */; };
+		AA8D2D06286AA14000135575 /* calm_game_music_1-49209.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AA8D2CFF286AA14000135575 /* calm_game_music_1-49209.mp3 */; };
+		AA8D2D08286AA16300135575 /* AVPlayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8D2D07286AA16300135575 /* AVPlayer+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +101,16 @@
 		AA868F192856DC3B00EF3E35 /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		AA868F202856DD6100EF3E35 /* GameUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUIView.swift; sourceTree = "<group>"; };
 		AA868F222856E0F100EF3E35 /* Pixel.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pixel.ttf; sourceTree = "<group>"; };
+		AA8D2CF4286A9CBB00135575 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
+		AA8D2CF6286AA05700135575 /* WinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinView.swift; sourceTree = "<group>"; };
+		AA8D2CF9286AA13F00135575 /* game-start-6104.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "game-start-6104.mp3"; sourceTree = "<group>"; };
+		AA8D2CFA286AA13F00135575 /* game-over-arcade-6435.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "game-over-arcade-6435.mp3"; sourceTree = "<group>"; };
+		AA8D2CFB286AA13F00135575 /* slash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = slash.mp3; sourceTree = "<group>"; };
+		AA8D2CFC286AA13F00135575 /* gamemusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gamemusic.mp3; sourceTree = "<group>"; };
+		AA8D2CFD286AA14000135575 /* decidemp3-14575.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "decidemp3-14575.mp3"; sourceTree = "<group>"; };
+		AA8D2CFE286AA14000135575 /* success-fanfare-trumpets-6185.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "success-fanfare-trumpets-6185.mp3"; sourceTree = "<group>"; };
+		AA8D2CFF286AA14000135575 /* calm_game_music_1-49209.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "calm_game_music_1-49209.mp3"; sourceTree = "<group>"; };
+		AA8D2D07286AA16300135575 /* AVPlayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +152,7 @@
 		AA78B690284712220000CC5A /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				AA8D2CF8286AA0EC00135575 /* Resources */,
 				AA7D08AD284EE74F0079974E /* ViewModel */,
 				AA7F680F284DF36200236F0A /* Model */,
 				AA7F680C284DF2EF00236F0A /* View */,
@@ -140,6 +161,7 @@
 				AA78B691284712220000CC5A /* final_projectApp.swift */,
 				AA78B693284712260000CC5A /* Assets.xcassets */,
 				AA868F222856E0F100EF3E35 /* Pixel.ttf */,
+				AA8D2D07286AA16300135575 /* AVPlayer+Extensions.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -196,6 +218,8 @@
 				AA78831E286151F100D17C16 /* CreateLobbyView.swift */,
 				AA7D4ABC28606C9A0036D03A /* SettingView.swift */,
 				AA78832228616DA000D17C16 /* CharacterView.swift */,
+				AA8D2CF4286A9CBB00135575 /* GameOverView.swift */,
+				AA8D2CF6286AA05700135575 /* WinView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -215,6 +239,20 @@
 				AA7D08B0284EEB500079974E /* player.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		AA8D2CF8286AA0EC00135575 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AA8D2CFF286AA14000135575 /* calm_game_music_1-49209.mp3 */,
+				AA8D2CFD286AA14000135575 /* decidemp3-14575.mp3 */,
+				AA8D2CFA286AA13F00135575 /* game-over-arcade-6435.mp3 */,
+				AA8D2CF9286AA13F00135575 /* game-start-6104.mp3 */,
+				AA8D2CFC286AA13F00135575 /* gamemusic.mp3 */,
+				AA8D2CFB286AA13F00135575 /* slash.mp3 */,
+				AA8D2CFE286AA14000135575 /* success-fanfare-trumpets-6185.mp3 */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,10 +348,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA8D2D03286AA14000135575 /* gamemusic.mp3 in Resources */,
 				AA78B6A5284712260000CC5A /* Assets.xcassets in Resources */,
+				AA8D2D02286AA14000135575 /* slash.mp3 in Resources */,
 				AA78B6B2284718380000CC5A /* Localizable.strings in Resources */,
+				AA8D2D05286AA14000135575 /* success-fanfare-trumpets-6185.mp3 in Resources */,
+				AA8D2D01286AA14000135575 /* game-over-arcade-6435.mp3 in Resources */,
 				AA7BB9F228505FE3004B59E1 /* GoogleService-Info.plist in Resources */,
+				AA8D2D06286AA14000135575 /* calm_game_music_1-49209.mp3 in Resources */,
+				AA8D2D00286AA14000135575 /* game-start-6104.mp3 in Resources */,
 				AA7EBD43285971F90087F869 /* Pixel.ttf in Resources */,
+				AA8D2D04286AA14000135575 /* decidemp3-14575.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,12 +395,15 @@
 				AA868F1C2856DC3B00EF3E35 /* ShowComponentsView.swift in Sources */,
 				AA868F0E2856DC1200EF3E35 /* LoginError.swift in Sources */,
 				AA868EFA2856DB8B00EF3E35 /* UserViewModel.swift in Sources */,
+				AA8D2CF7286AA05700135575 /* WinView.swift in Sources */,
 				AA7F680E284DF33300236F0A /* GameBoardView.swift in Sources */,
 				AA84DD83286308DE00D43D76 /* GameView.swift in Sources */,
 				AA7F6811284DF37900236F0A /* tile.swift in Sources */,
+				AA8D2D08286AA16300135575 /* AVPlayer+Extensions.swift in Sources */,
 				AA868F112856DC1200EF3E35 /* MyTextFieldStyle.swift in Sources */,
 				AA7BB9EE285059B6004B59E1 /* AdView.swift in Sources */,
 				AA78D7A9285EF60F00116808 /* game_object.swift in Sources */,
+				AA8D2CF5286A9CBB00135575 /* GameOverView.swift in Sources */,
 				AA7D08AF284EE7C70079974E /* GameViewModel.swift in Sources */,
 				AA7D08B1284EEB500079974E /* player.swift in Sources */,
 				AA78B6A1284712260000CC5A /* final_projectApp.swift in Sources */,

@@ -13,28 +13,38 @@ struct GameView: View {
             Text("").onAppear{
                 print("DER")
             }
-            if gameViewModel.currentGameData.players_role[gameViewModel.my_index]==""{
+            if gameViewModel.my_index<gameViewModel.currentGameData.players_role.endIndex,gameViewModel.currentGameData.players_role[gameViewModel.my_index]==""{
                 ChooseRoleView(gameViewModel: gameViewModel)
             }else if gameViewModel.currentGameData.allReady{
-                Text("").onAppear(perform: {
-                    gameViewModel.setTheSpawn()
-                })
-                GameBoardView(gameViewModel: gameViewModel)
-                Text("").onAppear{
-                    print("DER2")
-                }
+                
+                if !gameViewModel.is_gameover ,!gameViewModel.is_win{
+                    GameBoardView(gameViewModel: gameViewModel)
+                    Text("").onAppear{
+                        print("DER2")
+                    }
                 GameUIView(gameViewModel: gameViewModel)
                 Text("").onAppear{
                     print("DER3")
                 }
-                if gameViewModel.currentGameData.players_hp[gameViewModel.my_index]<=0{
-                    Button(action: {
-                        is_dead=true
-                        gameViewModel.leaveLobby()
-                    }, label:{
-                        Text("離開")
-                    }).fullScreenCover(isPresented: $is_dead,content:{HomeView()})
+                }else if gameViewModel.is_win{
+                    Text("HI").fullScreenCover(isPresented: $gameViewModel.is_win,content:{WinView()})
                 }
+                else {
+                    Button(action: {
+                        print("HI")
+                    
+                                        }, label:{
+                                            Text("離開")
+                                        }).fullScreenCover(isPresented: $gameViewModel.is_gameover,content:{GameOverView()})
+                }
+//                if gameViewModel.currentGameData.players_hp[gameViewModel.my_index]<=0{
+//                    Button(action: {
+//                        is_dead=true
+//
+//                    }, label:{
+//                        Text("離開")
+//                    }).fullScreenCover(isPresented: $is_dead,content:{HomeView()})
+//                }
             }else{
                 ZStack{
                     Rectangle().fill(uiColor1).frame(width: UIScreen.main.bounds.width/2, height:  UIScreen.main.bounds.height/2)
