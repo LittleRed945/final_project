@@ -1,0 +1,75 @@
+/* 
+  Localizable.strings
+  final_project
+
+  Created by  Erwin on 2022/6/29.
+  
+*/
+"開始"="Start";
+"等待其他玩家"="Waiting For Other Players";
+"探險家"="Adventurer";
+"戰士"="Warrior";
+"普通人"="Villager";
+"攻擊"="Attack";
+"休息"="Rest";
+"回到大廳"="Return";
+"送出"="send";
+"上傳圖片成功"="Success!";
+"確認"="confirm";
+"設定個人資料"="Profile Settings";
+"輸入暱稱"="Your NickName";
+"性別"="Gender";
+"男"="Male";
+"女"="Female";
+"生日"="Birthday";
+"請輸入暱稱（不可為空）"="Please input your nickname(can not be empty).";
+"創建失敗，請重新嘗試"="Creating your profile fails,please retry";
+"下一步"="Next";
+"建立資料成功"="Success";
+"前往設置個人資料"="Setting your profile";
+"前往設置角色外觀"="Setting your character";
+"成功"="Success";
+"密碼錯誤"="Password is incorrect";
+"帳號不存在，請註冊或使用其他帳號"="Account does not exist";
+"不明原因錯誤，請重新登入"="Unknown error,please retry";
+"登入"="login";
+"註冊"="register";
+"錯誤"="Error";
+"重新輸入"="retry";
+"註冊"="register";
+"兩次密碼不一致"="The two passwords do not match";
+"註冊成功"="Success";
+"註冊失敗"="Fail";
+"一場的總傷害排行榜"="The total damage in one game";
+"總傷害"="Total Damage";
+"個人資料"="Profile";
+"暱稱: "="NickName:";
+"暱稱錯誤"="NickName Error";
+"首次登入: "="First Login:";
+"找不到房間"="Can not find the lobby";
+"創建房間"="Create Lobby";
+"邀請碼"="Invite Code";
+"加入房間"="Join Lobby";
+"硬幣數量："="Coin:";
+"創建房間"="Create Lobby";
+"遊戲說明"="Instruction";
+"一開始必須選擇好職業,每種職業都擁有以下三種屬性"="At the beginning, you must choose a good role, each role has the following three attributes";
+"Hp-一但歸零代表出局"="Hp:Once it returns to zero, it means you are out of the game";
+"Sp-一但歸零代表該回合無法再進行移動或是攻擊等操作"="Sp:Once it returns to zero, it means that operations such as moving or attacking can no longer be performed in this round.";
+"Atk-對其他玩家進行攻擊一次所造成的數值傷害"="Atk:Numerical damage from an attack to another player";
+"移動"="Move";
+"輪到自己的回合時,可以花費一點Sp按下方向鍵進行移動"="When it is your turn, you can spend a point of Sp to press the arrow keys to move";
+"只有前方沒有玩家時才可以進行移動"="Move only when there is no player in front of you";
+"一回合可以移動多次"="You can move multiple times in one turn";
+"攻擊"="Attack";
+"輪到自己的回合時,可以花費一點Sp對前方目標進行一次攻擊"="When it's your turn, you can spend 1 Sp to attack the target in front of you";
+"只有前方有玩家時才可以進行攻擊"="You can only attack when there is a player in front of you";
+"一回合可以攻擊多次"="Can attack multiple times in one turn";
+"休息"="Rest";
+"輪到自己的回合時,可以按下休息按鈕進行休息"="When it is your turn, you can press the rest button to rest";
+"恢復自身最大Sp的一半"="Restores half of own maximum Sp";
+"使用後將直接進入下一回合"="After use, it will directly enter the next round";
+"每場遊戲的玩家順序在一開場就決定好了,好好的在遊戲中成為最後的生還者吧！"="The order of players in each game is decided at the beginning of the game, so let's be the last survivor in the game!";
+"音效："="SFX:";
+"音樂："="BGM:";
+

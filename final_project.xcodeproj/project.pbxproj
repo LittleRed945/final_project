@@ -29,6 +29,7 @@
 		AA7D4ABB286065580036D03A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7D4ABA286065580036D03A /* HomeView.swift */; };
 		AA7D4ABD28606C9A0036D03A /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7D4ABC28606C9A0036D03A /* SettingView.swift */; };
 		AA7EBD43285971F90087F869 /* Pixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA868F222856E0F100EF3E35 /* Pixel.ttf */; };
+		AA7F0E75286C38EB00CF8BD1 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = AA7F0E74286C38EB00CF8BD1 /* FirebaseCrashlytics */; };
 		AA7F680E284DF33300236F0A /* GameBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F680D284DF33300236F0A /* GameBoardView.swift */; };
 		AA7F6811284DF37900236F0A /* tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F6810284DF37900236F0A /* tile.swift */; };
 		AA7FD3B5286BE4BA0088D638 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA7FD3B4286BE4B10088D638 /* Localizable.strings */; };
@@ -131,6 +132,7 @@
 				AA7BB9E828504E64004B59E1 /* FirebaseAnalyticsSwift in Frameworks */,
 				AA7D08A8284EE6AC0079974E /* FirebaseAuth in Frameworks */,
 				AA7BB9EC28505471004B59E1 /* GoogleMobileAds in Frameworks */,
+				AA7F0E75286C38EB00CF8BD1 /* FirebaseCrashlytics in Frameworks */,
 				AA868F252856E1E000EF3E35 /* NukeUI in Frameworks */,
 				AA7D08AA284EE6AC0079974E /* FirebaseFirestoreSwift in Frameworks */,
 				AA7D08AC284EE6AC0079974E /* FirebaseStorage in Frameworks */,
@@ -280,6 +282,7 @@
 				AA78B694284712260000CC5A /* Sources */,
 				AA78B695284712260000CC5A /* Frameworks */,
 				AA78B696284712260000CC5A /* Resources */,
+				AA7F0E76286C390D00CF8BD1 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -293,6 +296,7 @@
 				AA7BB9E728504E64004B59E1 /* FirebaseAnalyticsSwift */,
 				AA7BB9EB28505471004B59E1 /* GoogleMobileAds */,
 				AA868F242856E1E000EF3E35 /* NukeUI */,
+				AA7F0E74286C38EB00CF8BD1 /* FirebaseCrashlytics */,
 			);
 			productName = "final_project (iOS)";
 			productReference = AA78B698284712260000CC5A /* final_project.app */;
@@ -387,6 +391,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AA7F0E76286C390D00CF8BD1 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${BUILD_DIR%Build/*}SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AA78B694284712260000CC5A /* Sources */ = {
@@ -578,6 +605,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = FA2XAU6269;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -776,6 +804,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AA7D08A6284EE6AC0079974E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		AA7F0E74286C38EB00CF8BD1 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA7D08A6284EE6AC0079974E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 		AA868F242856E1E000EF3E35 /* NukeUI */ = {
 			isa = XCSwiftPackageProductDependency;
