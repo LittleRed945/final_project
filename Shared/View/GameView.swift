@@ -21,7 +21,7 @@ struct GameView: View {
                 GameUIView(gameViewModel: gameViewModel)
                 
                 }else if gameViewModel.is_win{
-                    Text("HI").onAppear{
+                    Text("").onAppear{
                         gameViewModel.winPlayer.volume=gameViewModel.SFXvolume
                         gameViewModel.winPlayer.playFromStart()
                         DispatchQueue.main.asyncAfter(deadline: .now()+1){
@@ -31,7 +31,7 @@ struct GameView: View {
                     }.fullScreenCover(isPresented: $gameViewModel.is_win,content:{WinView(rank_data: gameViewModel.rank_data)})
                 }
                 else {
-                    Text("HI").onAppear{
+                    Text("").onAppear{
                         gameViewModel.winPlayer.volume=gameViewModel.SFXvolume
                         gameViewModel.losePlayer.playFromStart()
                     }.fullScreenCover(isPresented: $gameViewModel.is_gameover,content:{GameOverView(rank_data: gameViewModel.rank_data)})

@@ -12,13 +12,19 @@ struct RankView: View {
     var body: some View {
         NavigationView{
             VStack{
-                Form{
-                    Text("一場的總傷害排行榜")
+                List{
+                    Text("一場的總傷害排行榜").font(.title)
+                    HStack{
+                        Text("Rank").frame(width:60)
+                        Text("Name").frame(width:120)
+                        Text("Total Damage").frame(minWidth: 0, maxWidth: .infinity)
+                    }
                     Group{
                     ForEach(ranks.indices,id:\.self){i in
                         HStack{
-                            Text("第\(i+1)名\(ranks[i].userName)")
-                            Text("總傷害：\(ranks[i].total_damage)")
+                            Text("\(i+1)").frame(width:60)
+                            Text("\(ranks[i].userName)").frame(width:120)
+                            Text("\(ranks[i].total_damage)").frame(minWidth: 0, maxWidth: .infinity)
                         }
                     }
                     }

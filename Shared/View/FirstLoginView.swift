@@ -43,8 +43,9 @@ struct FirstLoginView: View {
                                 Text("性別")
                                 Spacer()
                                 Picker(selection: $userGenderSelect, label: Text("性別")) {
-                                    Text(gender[0]).tag(0)
-                                                                    Text(gender[1]).tag(1)
+                                    
+                                    Text("男").tag(0)
+                                                                    Text("女").tag(1)
                                 }.pickerStyle(SegmentedPickerStyle())
                                     .frame(width: 100)
                                     .shadow(radius: 5)

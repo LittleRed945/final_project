@@ -17,7 +17,14 @@ struct ChooseRoleView: View {
                         Rectangle().fill(uiColor1).frame(width: UIScreen.main.bounds.width/4-30, height:  UIScreen.main.bounds.height/2)
                         Rectangle().fill(uiColor2).frame(width: UIScreen.main.bounds.width/4-50, height:  UIScreen.main.bounds.height/2-20)
                     }.overlay{
-                        Text("\(roles_array[i])")
+                        if i==0{
+                            Text("探險家").foregroundColor(.black)
+                        }else if i==1{
+                            Text("戰士").foregroundColor(.black)
+                        }else{
+                            Text("普通人").foregroundColor(.black)
+                        }
+                        
                     }
                 })
             }

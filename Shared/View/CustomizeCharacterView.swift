@@ -136,12 +136,11 @@ struct CustomizedCharacterView:View{
             
             switch result {
             case .success(let url):
-                print("上傳照片成功")
+                print("上傳圖片成功")
                 userViewModel.setUserPhoto(url: url) { result in
                     switch result {
                     case .success(let msg):
                         print(msg)
-                        print("dDDDDDEPPRI")
                         self.showAlert=true
                         print(self.showAlert)
                         self.myAlert=Alert(title: Text("上傳圖片成功"), message: Text(alertMsg), dismissButton: .cancel(Text("確認"),action:go2HomeView))

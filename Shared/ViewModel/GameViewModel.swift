@@ -111,14 +111,20 @@ class GameViewModel: ObservableObject {
             
             self.currentGameData=game
             if self.currentGameData.players_id.endIndex != self.userDatas.endIndex{
+                var lose_player=false
+                if self.currentGameData.players_id.endIndex < self.userDatas.endIndex{
+                    lose_player=true
+                }
                 self.CatchUserData()
-                
                 self.is_gameover=true
                 for id in self.currentGameData.players_id{
                     if id == Auth.auth().currentUser!.uid{
                         self.is_gameover=false
                         break
                     }
+                }
+                if lose_player	,self.currentGameData.is_started,self.currentGameData.allReady{
+                    self.refreshGame()
                 }
             }
             
@@ -138,9 +144,9 @@ class GameViewModel: ObservableObject {
                     print(self.currentGameData.players_id)
                     self.is_win=true
                 }
-                if self.my_index>=self.currentGameData.players_id.endIndex || self.currentGameData.players_id[self.my_index] != Auth.auth().currentUser!.uid{
-                    self.refreshGame()
-                }
+//                if self.my_index>=self.currentGameData.players_id.endIndex || self.currentGameData.players_id[self.my_index] != Auth.auth().currentUser!.uid{
+//                    self.refreshGame()
+//                }
                 self.now_order=self.currentGameData.order
                 for i in self.currentGameData.players_order.indices{
                     if self.currentGameData.players_order[i] == self.now_order{
@@ -458,6 +464,9 @@ class GameViewModel: ObservableObject {
         self.characters.remove(at: killed_index)
         if self.currentGameData.order>killed_order{
             self.currentGameData.order-=1
+            if self.currentGameData.order >= self.currentGameData.players_id.endIndex{
+                self.currentGameData.order=0
+            }
         }
         self.now_order=self.currentGameData.order
         for i in self.currentGameData.players_order.indices{
@@ -515,26 +524,6 @@ class GameViewModel: ObservableObject {
         }else if self.characters[self.now_index].action%4==3,now_player_board_pos%16-1>=0,self.object_board[now_player_board_pos-1].object == .player{
             return true
         }
-        //        for i in 0..<self.currentGameData.players_order.endIndex{
-        //            if i != self.now_index{
-        //                if self.characters[self.now_index].action%4==1,self.currentGameData.players_x[now_index]==self.currentGameData.players_x[i],self.currentGameData.players_y[now_index]==self.currentGameData.players_y[i]-1{
-        //                    print("UP")
-        //                    return true
-        //                }
-        //                else if self.characters[self.now_index].action%4==0,self.currentGameData.players_x[now_index]==self.currentGameData.players_x[i],self.currentGameData.players_y[now_index]==self.currentGameData.players_y[i]+1{
-        //                    print("DOWN")
-        //                    return true
-        //                }
-        //                else if self.characters[self.now_index].action%4==3,self.currentGameData.players_x[now_index]==self.currentGameData.players_x[i]-1,self.currentGameData.players_y[now_index]==self.currentGameData.players_y[i]{
-        //                    print("LEFT")
-        //                    return true
-        //                }
-        //                else if self.characters[self.now_index].action%4==2,self.currentGameData.players_x[now_index]==self.currentGameData.players_x[i]+1,self.currentGameData.players_y[now_index]==self.currentGameData.players_y[i]{
-        //                    print("LEFT")
-        //                    return true
-        //                }
-        //            }
-        //        }
         return false
     }
     func move(){
@@ -556,6 +545,11 @@ class GameViewModel: ObservableObject {
             for i in 0..<self.move_image-1{
                 DispatchQueue.main.asyncAfter(deadline: .now() + Double(i)*0.1) {
                     self.characters[self.now_index].animation_id+=1
+                    if i==self.move_image-2{
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1){
+                            self.characters[self.now_index].animation_id=0
+                        }
+                    }
                 }
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(self.move_image-1)*0.1) {
@@ -572,49 +566,7 @@ class GameViewModel: ObservableObject {
                 }
             }
         }
-        //        if  self.object_board[now_player_board_pos].object != .player{
-        //
-        //            withAnimation(){
-        //
-        //                if !self.player_is_front(){
-        //                    //move up, and  because the player is already move,you should swap the not updated player object to  the object that  is now player at
-        //                    print(now_player_board_pos)
-        //                    if self.characters[self.now_index].action==1,self.currentGameData.players_y[self.now_index]>=0{
-        //                        self.object_board.swapAt(now_player_board_pos, now_player_board_pos+16)
-        //                    }
-        //                    //move down
-        //                    else if self.characters[self.now_index].action==0,self.currentGameData.players_y[self.now_index]<=16-1{
-        //                        self.object_board.swapAt(now_player_board_pos, now_player_board_pos-16)
-        //                    }
-        //                    //move left
-        //                    else if self.characters[self.now_index].action==3,self.currentGameData.players_x[self.now_index]>=0{
-        //                        self.object_board.swapAt(now_player_board_pos, now_player_board_pos+1)
-        //                    }
-        //                    //move right
-        //                    else if self.characters[self.now_index].action==2,self.currentGameData.players_x[self.now_index]<=16-1{
-        //                        self.object_board.swapAt(now_player_board_pos, now_player_board_pos-1)
-        //                    }
-        //                }
-        //            }
-        //        }
-        //        if self.players[self.turn].is_moveing{
-        //            if self.players[self.turn].action==1{
-        //                self.move_up()
-        //            }
-        //            else if self.players[self.turn].action==0{
-        //                self.move_down()
-        //            }
-        //            else if self.players[self.turn].action==3{
-        //                self.move_left()
-        //            }
-        //            else if self.players[self.turn].action==2{
-        //                self.move_right()
-        //            }
-        //            self.players[self.turn].is_moveing=false
-        //        }
-        //        for i in object_board.indices{
-        //            if
-        //        }
+
     }
     func move_up(){
         self.characters[self.now_index].action=1

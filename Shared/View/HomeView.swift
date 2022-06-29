@@ -72,10 +72,10 @@ struct HomeView:View{
             ad.present(fromRootViewController: controller) {
                 // 影片播放一段時間後觸發
                 print("獲得獎勵")
-                self.userData.coin+=100
-                self.userViewModel.updataUserData(ud: self.userData, uid: Auth.auth().currentUser!.uid)
+                
             }
-            
+            self.userData.coin+=100
+            self.userViewModel.updataUserData(ud: self.userData, uid: Auth.auth().currentUser!.uid)
             print("吉掰\(self.userData.id)")
         }
     }
@@ -189,7 +189,7 @@ struct HomeView:View{
                     }
                     ToolbarItemGroup(placement: .navigationBarTrailing) {
                         HStack{
-                            Text("硬幣數量：\(userData.coin)").foregroundColor(uiColor2)
+                            Text("Coin：\(userData.coin)").foregroundColor(uiColor2)
                             Button(action: {
                                 loadAd()
                                 
